@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE hibernate-mapping PUBLIC
+
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="hibernate.ejemplo.modelos.Alumno" table="alumnos">
+        <id column="id" name="id" type="integer"></id>
+        <property name="nombre" column="nombre" type="java.lang.String"></property>
+        <property name="apellidos" column="apellidos" type="java.lang.String"></property>
+        <property name="dni" column="dni" type="java.lang.String"></property>
+    </class>
+</hibernate-mapping>
