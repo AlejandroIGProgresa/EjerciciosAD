@@ -1,12 +1,34 @@
 package hibernate.ejemplo.modelos;
 
+import jakarta.persistence.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Entity
+@Table (name = "cursos")
 public class Curso {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column
     private String nombre;
+    @Column
     private String descripcion;
+    @Column
     private char grupo;
 
+    @OneToMany(mappedBy = "curso", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Alumno> alumnos;
     public Curso() {
+        this.alumnos = new ArrayList<>();
+    }
+
+    public Curso(String nombre, String descripcion, char grupo) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.grupo = grupo;
+        this.alumnos = new ArrayList<>();
     }
 
     public int getId() {
@@ -49,5 +71,13 @@ public class Curso {
                 ", descripcion='" + descripcion + '\'' +
                 ", grupo=" + grupo +
                 '}';
+    }
+
+    public List<Alumno> getAlumnos() {
+        return alumnos;
+    }
+
+    public void setAlumnos(List<Alumno> alumnos) {
+        this.alumnos = alumnos;
     }
 }

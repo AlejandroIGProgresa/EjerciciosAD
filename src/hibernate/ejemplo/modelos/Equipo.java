@@ -1,9 +1,35 @@
 package hibernate.ejemplo.modelos;
 
+
+import jakarta.persistence.*;
+import jdk.jfr.Relational;
+
+@Entity
+@Table (name = "equipos")
 public class Equipo {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column
     private String marca;
+    @Column
     private String modelo;
+
+    public Equipo(String marca, String modelo) {
+        this.marca = marca;
+        this.modelo = modelo;
+    }
+
+    @OneToOne (mappedBy = "equipo", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private Alumno alumno;
+
+    public Alumno getAlumno() {
+        return alumno;
+    }
+
+    public void setAlumno(Alumno alumno) {
+        this.alumno = alumno;
+    }
 
     public Equipo() {
     }

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE hibernate-mapping PUBLIC
+
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="hibernate.ejemplo.modelos.Alumno" table="alumnos">
+        <id column="id" name="id" type="integer"></id>
+        <property name="nombre" column="nombre" type="java.lang.String"></property>
+        <property name="apellidos" column="apellidos" type="java.lang.String"></property>
+        <property name="dni" column="dni" type="java.lang.String"></property>
+
+        <!-- Relaciones -->
+
+        <one-to-one name="equipo" cascade="all"></one-to-one>
+        <many-to-one name="curso" cascade="all">
+            <column name="id_curso"></column>
+        </many-to-one>
+    </class>
+
+    <class name="hibernate.ejemplo.modelos.Curso" table="cursos">
+        <id column="id" name="id" type="integer"></id>
+        <property name="nombre" type="java.lang.String" column="nombre"></property>
+        <property name="descripcion" type="java.lang.String" column="descripcion"></property>
+        <property name="grupo" type="java.lang.Character" column="grupo"></property>
+
+        <list name="alumnos" cascade="all">
+            <key>
+                <column name="id_curso"></column>
+            </key>
+            <index>
+                <column name="id_curso"></column>
+            </index>
+            <one-to-many class="hibernate.ejemplo.modelos.Alumno"></one-to-many>
+        </list>
+    </class>
+    <class name="hibernate.ejemplo.modelos.Equipo">
+        <id name="id" type="integer"></id>
+        <property name="marca" type="java.lang.String"></property>
+        <property name="modelo" type="java.lang.String"></property>
+
+        <one-to-one name="alumno" cascade="all"></one-to-one>
+    </class>
+</hibernate-mapping>

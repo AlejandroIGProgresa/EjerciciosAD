@@ -1,9 +1,6 @@
 package hibernate.ejemplo.modelos;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.io.Serializable;
 
@@ -11,6 +8,7 @@ import java.io.Serializable;
 @Table (name = "alumnos")
 public class Alumno implements Serializable {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column
     private String nombre;
@@ -19,6 +17,14 @@ public class Alumno implements Serializable {
     @Column
     private String dni;
 
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_equipo")
+    private Equipo equipo;
+
+    @ManyToOne
+    @JoinColumn(name = "id_curso")
+    private Curso curso;
+
     public Alumno(String nombre, String apellidos, String dni) {
         this.nombre = nombre;
         this.apellidos = apellidos;
@@ -26,6 +32,22 @@ public class Alumno implements Serializable {
     }
 
     public Alumno() {
+    }
+
+    public Equipo getEquipo() {
+        return equipo;
+    }
+
+    public void setEquipo(Equipo equipo) {
+        this.equipo = equipo;
+    }
+
+    public Curso getCurso() {
+        return curso;
+    }
+
+    public void setCurso(Curso curso) {
+        this.curso = curso;
     }
 
     public int getId() {
