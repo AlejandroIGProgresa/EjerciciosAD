@@ -48,4 +48,14 @@ public class Empleado {
     public void setSalario(float salario) {
         this.salario = salario;
     }
+
+    @Override
+    public String toString() {
+        return "Empleado{" +
+                "id=" + id +
+                ", dpt=" + dpt +
+                ", apellido='" + apellido + '\'' +
+                ", salario=" + salario +
+                '}';
+    }
 }

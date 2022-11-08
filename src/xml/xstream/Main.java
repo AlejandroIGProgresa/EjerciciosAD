@@ -7,13 +7,15 @@ public class Main {
     public static void main(String[] args) {
         Empleado empleado = new Empleado(1,20, "Garcia",2456.45f);
 
-        XStream xStream = new XStream();
-        xStream.allowTypesByWildcard(new String[]{
-                "models.*"
+        XStream xstream = new XStream();
+        xstream.allowTypesByWildcard(new String[]{
+                "xml.modelos.*"
         });
-        String xml = xStream.toXML(empleado);
+        String xml = xstream.toXML(empleado);
         System.out.println(xml);
 
-        Empleado empleado1 = new Empleado();
+        Empleado empleado2 = new Empleado();
+        xstream.fromXML(xml, empleado2);
+        System.out.println(empleado2.toString());
     }
 }

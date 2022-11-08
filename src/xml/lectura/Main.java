@@ -39,10 +39,10 @@ public class Main {
                 String dni = empleado.getAttribute("dni");
                 String apellido = empleado.getElementsByTagName("apellido").item(0).getTextContent();
                 int id = Integer.parseInt(empleado.getElementsByTagName("id").item(0).getTextContent());
-                int dpt = Integer.parseInt(empleado.getElementsByTagName("dpt").item(0).getTextContent());
+                int dep = Integer.parseInt(empleado.getElementsByTagName("dep").item(0).getTextContent());
                 float salario = Float.parseFloat(empleado.getElementsByTagName("salario").item(0).getTextContent());
 
-                Empleado emp = new Empleado(id, dpt, apellido, salario);
+                Empleado emp = new Empleado(id, dep, apellido, salario);
                 System.out.println(emp);
             }
 

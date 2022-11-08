@@ -34,7 +34,7 @@
             <one-to-many class="hibernate.ejemplo.modelos.Alumno"></one-to-many>
         </list>
     </class>
-    <class name="hibernate.ejemplo.modelos.Equipo">
+    <class name="hibernate.ejemplo.modelos.Equipo" table="equipos">
         <id name="id" type="integer"></id>
         <property name="marca" type="java.lang.String"></property>
         <property name="modelo" type="java.lang.String"></property>
